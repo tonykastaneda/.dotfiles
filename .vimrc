@@ -20,7 +20,6 @@ call plug#begin("~/.vim/plugged")
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
     Plug 'mhinz/vim-startify'
     Plug 'veloce/vim-aldmeris'
-    Plug 'nightsense/forgotten'
     Plug 'vv9k/vim-github-dark'
     Plug 'rakr/vim-one'
     
@@ -36,6 +35,8 @@ set noerrorbells
 set vb t_vb=
 set scrolloff=8
 let &t_Co=256
+set number
+set relativenumber
 "------------------------------------------------------------------------
 
 
@@ -77,11 +78,6 @@ let g:thematic#themes = {
 \                  'typeface': 'JetBrainsMonoNerdFontComplete-Regular',
 \                  'font-size': 16,
 \},
-\ 'obliv2' :{
-\                  'colorscheme': 'forgotten-dark',
-\                  'typeface': 'JetBrainsMonoNerdFontComplete-Regular',
-\                  'font-size': 16,
-\},
 \ 'one' :{
 \                  'colorscheme': 'one',
 \                  'background': 'dark',
@@ -90,26 +86,21 @@ let g:thematic#themes = {
 \},
 \ }
 
-
-
-
-
+" Thematic - Auto Theme settings
+" ----------------------------------------------------------------------
 augroup MyGithubDark
 autocmd !
 autocmd ColorScheme github_dark let g:gh_color = "soft"
 augroup END
+"-----------------------------------------------------------------------
+
+
+
 
 " Thematic - Default Theme
 "------------------------------------------------------------------------
 let g:thematic#theme_name = 'dracu'
 "------------------------------------------------------------------------
-
-
-" Thematic - Auto Load Theme Based on FileType
-"------------------------------------------------------------------------
-
-"------------------------------------------------------------------------
-
 
 
 
