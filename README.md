@@ -1,6 +1,6 @@
-# .dotfiles
+## Dot File Sync
+My personal Vim and ZSH rc files
 
-Vim and ZSH dotfiles
-
-git clone https:
-./install.sh
+## Install
+git clone https://github.com/tonykastaneda/.dotfiles
+install.sh - symlinks(".vim", ".vimrc", ".zsh", ".zshrc") > /usr
