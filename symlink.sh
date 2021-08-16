@@ -1,10 +1,10 @@
 #!/bin/sh
 
-if [ -d "~/.zshrc" ] && [ ! -L "~/.zshrc" ] && echo "Directory ~/.zshrc exists." || echo "Error: Directory ~/.zshrc exists but point to $(readlink -f ~/.zshrc)."
+if [ ! -L ".zsh" ]
 then
-  echo "rm -r ~/.zshrc"
+  echo "rm -r ~/.zsh"
 else
-  ech "ln -s ~/.dotfiles/.zshrc ~/.zshrc"
+  ech "ln -s ~/.dotfiles/.zshrc ~/.zsh"
 
 
 
