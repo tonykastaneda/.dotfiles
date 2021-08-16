@@ -20,6 +20,8 @@ call plug#begin("~/.vim/plugged")
     Plug 'veloce/vim-aldmeris'
     Plug 'vv9k/vim-github-dark'
     Plug 'rakr/vim-one'
+    Plug 'easymotion/vim-easymotion'
+    Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
     
 call plug#end()
 
