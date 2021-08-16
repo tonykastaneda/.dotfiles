@@ -2,10 +2,10 @@
 
 if [ ! -L ".zsh" ]
 then
-  echo "rm -r ~/.zsh"
+	echo "YES"
 else
-  ech "ln -s ~/.dotfiles/.zshrc ~/.zsh"
-
+	echo "NO"
+fi
 
 
 # This is an inline comment in bash
