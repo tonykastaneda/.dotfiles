@@ -10,3 +10,6 @@ augroup pencil
   autocmd FileType markdown setlocal spell
   
 augroup END
+
+
+let g:pencil#wrapModeDefault = 'soft'
