@@ -15,3 +15,5 @@ source /Users/tonycastaneda/.zsh/Plugins/zsh-autocomplete/zsh-autocomplete.plugi
 #PROMPT
 setopt PROMPT_SUBST
 PROMPT='🚽 ${PWD/#$HOME/ ➤  } '
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
