@@ -1,3 +1,0 @@
-[submodule ".vim/plugged/vim-easymotion"]
-	path = .vim/plugged/vim-easymotion
-	url = https://github.com/easymotion/vim-easymotion
