@@ -5,8 +5,6 @@ call plug#begin("~/.vim/plugged")
     Plug 'dracula/vim'
     Plug 'preservim/nerdtree'
     Plug 'ryanoasis/vim-devicons'
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-    Plug 'junegunn/fzf.vim'
     Plug 'sbdchd/neoformat'
     Plug 'alvan/vim-closetag'
     Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
