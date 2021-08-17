@@ -28,12 +28,12 @@ call plug#end()
 "------------------------------------------------------------------------
 
 
-source $HOME/.dotfiles/.settings/thematic.vimrc
-source $HOME/.dotfiles/.settings/sets.vimrc
-source $HOME/.dotfiles/.settings/remaps.vimrc
-source $HOME/.dotfiles/.settings/nerdtree.vimrc
-source $HOME/.dotfiles/.settings/pencil.vimrc
-source $HOME/.dotfiles/.settings/autoclosetag.vimrc
+source $HOME/.dotfiles/.vim/settings/thematic.vimrc
+source $HOME/.dotfiles/.vim/settings/sets.vimrc
+source $HOME/.dotfiles/.vim/settings/remaps.vimrc
+source $HOME/.dotfiles/.vim/settings/nerdtree.vimrc
+source $HOME/.dotfiles/.vim/settings/pencil.vimrc
+source $HOME/.dotfiles/.vim/settings/autoclosetag.vimrc
 
 
 

@@ -6,6 +6,6 @@ rm -r -f "~/.vim";
 rm -r -f "~/.vimrc";
 rm -r -f "~/.viminfo";
 ln -s ~/.dotfiles/.vim ~/.vim;
-ln -s ~/.dotfiles/.vimrc ~/.vimrc;
+ln -s ~/.dotfiles/.vim/.vimrc ~/.vimrc;
 ln -s ~/.dotfiles/.zsh ~/.zsh;
-ln -s ~/.dotfiles/.zshrc ~/.zshrc;
+ln -s ~/.dotfiles/.zsh/.zshrc ~/.zshrc;
