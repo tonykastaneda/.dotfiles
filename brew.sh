@@ -8,6 +8,11 @@ brew install git
 brew install code-minimap
 brew install fff
 brew install rclone
+brew install htop
+brew install youtube-dl
+brew install ffmpeg
+brew install speedtest-cli
+
 
 # GUI-APPLICATIONS
 brew cask install google-chrome
