@@ -34,6 +34,10 @@ source $HOME/.dotfiles/.vim/settings/remaps.vimrc
 source $HOME/.dotfiles/.vim/settings/nerdtree.vimrc
 source $HOME/.dotfiles/.vim/settings/pencil.vimrc
 source $HOME/.dotfiles/.vim/settings/autoclosetag.vimrc
+source $HOME/.dotfiles/.vim/settings/coc.vimrc
+
+
+
 
 
 

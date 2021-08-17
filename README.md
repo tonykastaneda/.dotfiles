@@ -13,6 +13,10 @@ chmod +x installer.sh <br>
 ### Settings
 Settings for individual Vim Plugins are found in .dotfiles/.vim/settings
 
+### CoC Jason Update
+CoC has auto complete enter off by default <br>
+
+
 
 ## Brew Post Installer Script
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" <br>
