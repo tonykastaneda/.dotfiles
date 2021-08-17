@@ -6,6 +6,8 @@ brew install node
 brew install yarn
 brew install git
 brew install code-minimap
+brew install fff
+brew install rclone
 
 # GUI-APPLICATIONS
 brew cask install google-chrome

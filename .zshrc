@@ -8,7 +8,7 @@ alias qq= 'exit'
 
 
 #PLUGINS
-source /Users/tonycastaneda/.zsh/Plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+source ~/.zsh/Plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 
 
@@ -17,3 +17,12 @@ setopt PROMPT_SUBST
 PROMPT='🚽 ${PWD/#$HOME/ ➤  } '
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+# Add this to your .bashrc, .zshrc or equivalent.
+# Run 'fff' with 'f' or whatever you decide to name the function.
+f() {
+    fff "$@"
+    cd "$(cat "${XDG_CACHE_HOME:=${HOME}/.cache}/fff/.fff_d")"
+}
+
