@@ -5,3 +5,4 @@ let &t_Co=256
 set number
 set relativenumber
 set syntax
+set incsearch
