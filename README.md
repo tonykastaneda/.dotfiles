@@ -28,6 +28,6 @@ chmod +x brew.sh <br>
 
 ## Atomic Installer Script
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" <br>
-cd ~/Desktop; curl -o atomic.sh https://raw.githubusercontent.com/tonykastaneda/.dotfiles/main/atomic.sh; chmod +x atomic.sh
+cd ~/Desktop; curl -o atomic.sh https://raw.githubusercontent.com/tonykastaneda/.dotfiles/main/atomic.sh; chmod +x atomic.sh <br>
 ./atomic.sh <br>
 
