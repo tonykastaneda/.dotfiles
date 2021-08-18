@@ -32,15 +32,14 @@ let g:thematic#themes = {
 
 
 
-" Thematic - Auto Theme settings
-" ----------------------------------------------------------------------
-augroup MyGithubDark
-autocmd!
-autocmd ColorScheme github_dark let g:gh_color = "soft"
-augroup END
-
-
 
 " Thematic - Default Theme
 "------------------------------------------------------------------------
 let g:thematic#theme_name = 'github'
+let g:gh_color = "soft"
+
+" Light Line Theme
+let g:lightline = {
+      \ 'colorscheme': 'one',
+      \ }
+

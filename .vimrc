@@ -3,14 +3,14 @@
 
 call plug#begin("~/.vim/plugged")
     Plug 'dracula/vim'
+    Plug 'itchyny/lightline.vim'    
     Plug 'preservim/nerdtree'
     Plug 'ryanoasis/vim-devicons'
     Plug 'sbdchd/neoformat'
     Plug 'alvan/vim-closetag'
     Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
-    Plug 'iamcco/coc-tailwindcss',  {'do': 'yarn install --frozen-lockfile && yarn run build'}
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    let g:coc_global_extensions = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver']
+    let g:coc_global_extensions = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver', 'coc-tailwindcss']
     Plug 'preservim/vim-thematic'
     Plug 'preservim/vim-colors-pencil'
     Plug 'preservim/vim-pencil'
