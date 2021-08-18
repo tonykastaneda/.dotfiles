@@ -1,4 +1,4 @@
-# DotFile Sync
+# DotFile
 My personal vimrc and zshrc files with plugins
 
 ## Vim & Zsh Installer Script
@@ -28,7 +28,6 @@ chmod +x brew.sh <br>
 
 ## Atomic Installer Script
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" <br>
-OBTAIN ATOMIC.SH - Working on curl option<br>
-chmod +x atomic.sh <br>
+cd ~/Desktop; curl -o atomic.sh https://raw.githubusercontent.com/tonykastaneda/.dotfiles/main/atomic.sh; chmod +x atomic.sh
 ./atomic.sh <br>
 
