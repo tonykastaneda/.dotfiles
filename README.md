@@ -54,3 +54,10 @@ curl -o atomic.sh https://raw.githubusercontent.com/tonykastaneda/.dotfiles/main
 ./atomic.sh
 ```
 
+## Nuka-cola
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+```
+curl -o atomic.sh https://raw.githubusercontent.com/tonykastaneda/.dotfiles/main/atomic.sh; chmod +x atomic.sh; ./atomic.sh
+```
