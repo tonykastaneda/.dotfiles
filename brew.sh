@@ -12,6 +12,7 @@ brew install htop
 brew install youtube-dl
 brew install ffmpeg
 brew install speedtest-cli
+brew install neofetch
 
 
 # GUI-APPLICATIONS
