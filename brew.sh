@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # DEPENDENCIES
+brew install cask
 brew install python
 brew install node
 brew install yarn
