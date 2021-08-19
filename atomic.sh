@@ -29,6 +29,8 @@ defaults write com.apple.Dock autohide -bool TRUE; killall Dock;
 defaults write com.apple.Dock autohide-delay -float 0.0001; killall Dock;
 # Auto Hide Menubar -- must close all apps ie terminal
 defaults write NSGlobalDomain _HIHideMenuBar -bool true; killall Finder;
-source ~/.zshrc
+open -a "iTerm"; 
+killall Terminal
+
 
 
