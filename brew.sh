@@ -23,7 +23,6 @@ brew install google-backup-and-sync
 brew install visual-studio-code
 brew install macvim
 brew install glance
-brew install adobe-creative-cloud
 brew install raycast
 brew install iterm2
 brew install bartender
@@ -42,3 +41,4 @@ brew install gimp
 brew install slack
 brew install handbrake
 brew install dropbox
+brew install adobe-creative-cloud
