@@ -67,7 +67,3 @@ Any testing beyond this point is extremely temperamental. The goal is to create 
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"; curl -o atomic.sh https://raw.githubusercontent.com/tonykastaneda/.dotfiles/main/atomic.sh; chmod +x atomic.sh; ./atomic.sh
 ```
---- or with pastebin ---
-```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"; curl -o atomic.sh https://pastebin.com/raw/tZh4K9rW; chmod +x atomic.sh; ./atomic.sh
-```
