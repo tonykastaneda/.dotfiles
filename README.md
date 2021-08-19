@@ -54,10 +54,17 @@ curl -o atomic.sh https://raw.githubusercontent.com/tonykastaneda/.dotfiles/main
 ./atomic.sh
 ```
 
-## Nuka-cola
+## Nuka-cola Installer Script
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 ```
 curl -o atomic.sh https://raw.githubusercontent.com/tonykastaneda/.dotfiles/main/atomic.sh; chmod +x atomic.sh; ./atomic.sh
 ```
+
+## Uranium-235 - Highly Flammable
+Any testing beyond this point is extremely temperamental. The goal is to create a single line that would do everything I would have to do manually. I'm not sure if brew can be installed with another command directly afterward. More testing on the said project would need to be finished before final deployment.
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"; curl -o atomic.sh https://raw.githubusercontent.com/tonykastaneda/.dotfiles/main/atomic.sh; chmod +x atomic.sh; ./atomic.sh
+```
+
