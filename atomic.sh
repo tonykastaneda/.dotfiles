@@ -6,3 +6,7 @@ cd ~/Documents;
 git clone https://github.com/tonykastaneda/RayCastScripts;
 mkdir "Web Projects";
 mkdir "Screenshots";
+vim +'PlugInstall --sync' +qa;
+source ~/.zshrc
+
+
