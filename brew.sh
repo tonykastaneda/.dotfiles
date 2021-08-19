@@ -17,28 +17,28 @@ brew install neofetch
 
 
 # GUI-APPLICATIONS
-brew cask install google-chrome
-brew cask install discord
-brew cask install google-backup-and-sync
-brew cask install visual-studio-code
-brew cask install macvim
-brew cask install glance
-brew cask install adobe-creative-cloud
-brew cask install raycast
-brew cask install iterm2
-brew cask install bartender
-brew cask install daisydisk
-brew cask install github
-brew cask install dockey
-brew cask install hyper
-brew cask install iina
-brew cask install notion
-brew cask install amethyst
-brew cask install appcleaner
-brew cask install sublime-text
-brew cask install atom
-brew cask install inksacpe
-brew cask install gimp
-brew cask install slack
-brew cask install handbreak
-brew cask install dropbox
+brew install google-chrome
+brew install discord
+brew install google-backup-and-sync
+brew install visual-studio-code
+brew install macvim
+brew install glance
+brew install adobe-creative-cloud
+brew install raycast
+brew install iterm2
+brew install bartender
+brew install daisydisk
+brew install github
+brew install dockey
+brew install hyper
+brew install iina
+brew install notion
+brew install amethyst
+brew install appcleaner
+brew install sublime-text
+brew install atom
+brew install inksacpe
+brew install gimp
+brew install slack
+brew install handbreak
+brew install dropbox
