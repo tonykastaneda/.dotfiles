@@ -37,8 +37,8 @@ brew install amethyst
 brew install appcleaner
 brew install sublime-text
 brew install atom
-brew install inksacpe
+brew install inkscape
 brew install gimp
 brew install slack
-brew install handbreak
+brew install handbrake
 brew install dropbox
