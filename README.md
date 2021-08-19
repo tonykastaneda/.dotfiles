@@ -3,16 +3,16 @@ My personal vimrc and zshrc files with plugins
 
 ## Vim & Zsh Installer Script
 ```
-git clone https://github.com/tonykastaneda/.dotfiles <br>
+git clone https://github.com/tonykastaneda/.dotfiles
 ```
 ```
-cd ~/.dotfiles <br>
+cd ~/.dotfiles
 ```
 ```
-chmod +x installer.sh <br>
+chmod +x installer.sh
 ```
 ```
-./installer.sh <br>
+./installer.sh
 ```
 
 
@@ -25,32 +25,32 @@ Settings for individual Vim Plugins are found in .dotfiles/.vim/settings
 
 ## Brew Post Installer Script
 ```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" <br>
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 ```
-git clone https://github.com/tonykastaneda/RayCastScripts <br>
+git clone https://github.com/tonykastaneda/RayCastScripts
 ```
 ```
-git clone https://github.com/tonykastaneda/.dotfiles (Skip if Cloned)<br>
+git clone https://github.com/tonykastaneda/.dotfiles (Skip if Cloned)
 ```
 ```
-cd ~/.dotfiles <br>
+cd ~/.dotfiles
 ```
 ```
-chmod +x brew.sh <br>
+chmod +x brew.sh
 ```
 ```
-./brew.sh <br>
+./brew.sh
 ```
 
 ## Atomic Installer Script
 ```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" <br>
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 ```
-cd ~/Desktop; curl -o atomic.sh https://raw.githubusercontent.com/tonykastaneda/.dotfiles/main/atomic.sh; chmod +x atomic.sh <br>
+curl -o atomic.sh https://raw.githubusercontent.com/tonykastaneda/.dotfiles/main/atomic.sh; chmod +x atomic.sh
 ```
 ```
-./atomic.sh <br>
+./atomic.sh
 ```
 
