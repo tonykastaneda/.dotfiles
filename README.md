@@ -16,7 +16,7 @@ chmod +x installer.sh
 ```
 or
 ```
-git clone https://github.com/tonykastaneda/.dotfiles; cd ~/.dotfiles; chmod +x installer.sh; ./installer.sh
+git clone https://github.com/tonykastaneda/.dotfiles; cd ~/.dotfiles; chmod +x installer.sh; ./installer.sh; vim +'PlugInstall --sync' +qa;
 ```
 
 
