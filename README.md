@@ -14,6 +14,10 @@ chmod +x installer.sh
 ```
 ./installer.sh
 ```
+or
+```
+git clone https://github.com/tonykastaneda/.dotfiles; cd ~/.dotfiles; chmod +x installer.sh; ./installer.sh
+```
 
 
 ### Vim Plugin Install
