@@ -14,17 +14,14 @@ chmod +x installer.sh
 ```
 ./installer.sh
 ```
+### Vim Plugin Post Install 
+```
+:PlugInstall
+```
 or
 ```
 git clone https://github.com/tonykastaneda/.dotfiles; cd ~/.dotfiles; chmod +x installer.sh; ./installer.sh; vim +'PlugInstall --sync' +qa;
 ```
-
-
-### Vim Plugin Install
-:PlugInstall
-
-### Settings
-Settings for individual Vim Plugins are found in .dotfiles/.vim/settings
 
 
 ## Brew Post Installer Script
@@ -67,7 +64,7 @@ curl -o atomic.sh https://raw.githubusercontent.com/tonykastaneda/.dotfiles/main
 ```
 
 ## Uranium-235 - Highly Flammable
-Any testing beyond this point is extremely temperamental. The goal is to create a single line that would do everything I would have to do manually. I'm not sure if brew can be installed with another command directly afterward. More testing on the said project would need to be finished before final deployment.
+Working - Adobe Creative cloud needs an admin password at the end as well as pressing enter to install Vim Plugins and allow terminal to crear directories with file access
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"; curl -o atomic.sh https://raw.githubusercontent.com/tonykastaneda/.dotfiles/main/atomic.sh; chmod +x atomic.sh; ./atomic.sh
 ```
