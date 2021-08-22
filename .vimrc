@@ -24,7 +24,8 @@ call plug#begin("~/.vim/plugged")
     Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
     Plug 'arzg/vim-colors-xcode'
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-    
+    Plug 'voldikss/vim-floaterm'
+     
 
 call plug#end()
 
