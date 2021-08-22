@@ -4,7 +4,8 @@ neofetch
 #ALIAS
 alias mvim='open -a MacVim.app $1'
 alias qq= 'exit'
-
+alias o='open -a'
+alias reload='source ~/.zshrc'
 
 
 #PLUGINS
