@@ -22,7 +22,10 @@ call plug#begin("~/.vim/plugged")
     Plug 'rakr/vim-one'
     Plug 'easymotion/vim-easymotion'
     Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
+    Plug 'arzg/vim-colors-xcode'
+    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
     
+
 call plug#end()
 
 "------------------------------------------------------------------------
@@ -35,6 +38,7 @@ source $HOME/.dotfiles/.vim/settings/nerdtree.vimrc
 source $HOME/.dotfiles/.vim/settings/pencil.vimrc
 source $HOME/.dotfiles/.vim/settings/autoclosetag.vimrc
 source $HOME/.dotfiles/.vim/settings/coc.vimrc
+source $HOME/.dotfiles/.vim/settings/markdown.vimrc
 
 
 
