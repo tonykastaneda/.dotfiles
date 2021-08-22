@@ -5,9 +5,12 @@ rm -r -f "~/.zsh_history";
 rm -r -f "~/.vim";
 rm -r -f "~/.vimrc";
 rm -r -f "~/.viminfo";
+rm -r -f "~/.config/nvim;
 ln -s ~/.dotfiles/.vim ~/.vim;
 ln -s ~/.dotfiles/.vimrc ~/.vimrc;
 ln -s ~/.dotfiles/.zsh ~/.zsh;
 ln -s ~/.dotfiles/.zshrc ~/.zshrc;
+ln -s ~/.dotfiles/.vim ~/.config/nvim;
+ln -s ~/.dotfiles/.vimrc ~/.config/nvim/init.vim;
 mv  -v ~/.dotfiles/JetBrainsMono-Nerdfont* ~/Library/Fonts
 
