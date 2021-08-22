@@ -11,6 +11,11 @@ let g:thematic#themes = {
 \                  'typeface': 'JetBrainsMonoNerdFontComplete-Regular',
 \                  'font-size': 16,
 \},
+\ 'wwdc2016' :{       'colorscheme': 'wwdc16',
+\                  'background': 'dark',
+\                  'typeface': 'JetBrainsMonoNerdFontComplete-Regular',
+\                  'font-size': 16,
+\},
 \ 'xcode' :{       'colorscheme': 'xcodedarkhc',
 \                  'background': 'dark',
 \                  'typeface': 'JetBrainsMonoNerdFontComplete-Regular',
@@ -44,7 +49,7 @@ let g:thematic#themes = {
 
 " Thematic - Default Theme
 "------------------------------------------------------------------------
-let g:thematic#theme_name = 'xcode'
+let g:thematic#theme_name = 'wwdc2016'
 let g:gh_color = "soft"
 
 " Light Line Theme

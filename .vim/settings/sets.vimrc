@@ -6,3 +6,4 @@ set number
 set relativenumber
 set syntax
 set incsearch
+set termguicolors

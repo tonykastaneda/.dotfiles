@@ -25,6 +25,7 @@ call plug#begin("~/.vim/plugged")
     Plug 'arzg/vim-colors-xcode'
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
     Plug 'voldikss/vim-floaterm'
+    Plug 'lifepillar/vim-wwdc16-theme'
      
 
 call plug#end()
