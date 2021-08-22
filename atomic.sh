@@ -18,6 +18,8 @@ cd ~/Documents;
 git clone https://github.com/tonykastaneda/RayCastScripts;
 mkdir "Web Projects";
 mkdir "Screenshots";
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf;
+~/.fzf/install;
 vim +'PlugInstall --sync' +qa;
 # Running Apps In Dock Only
 defaults write com.apple.dock static-only -bool true; killall Dock;
