@@ -5,6 +5,8 @@ rm -r -f "~/.zsh_history";
 rm -r -f "~/.vim";
 rm -r -f "~/.vimrc";
 rm -r -f "~/.viminfo";
+rm -r -f "~/.config/nvim"
+ln -s ~/.dotfiles/nvim ~/.config/nvim
 ln -s ~/.dotfiles/.vim ~/.vim;
 ln -s ~/.dotfiles/.vimrc ~/.vimrc;
 ln -s ~/.dotfiles/.zsh ~/.zsh;
