@@ -28,4 +28,4 @@ f() {
     cd "$(cat "${XDG_CACHE_HOME:=${HOME}/.cache}/fff/.fff_d")"
 }
 
-source /Users/tonycastaneda/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/Plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
