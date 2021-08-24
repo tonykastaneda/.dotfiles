@@ -4,13 +4,14 @@ neofetch
 #ALIAS
 alias mvim='open -a MacVim.app $1'
 alias qq= 'exit'
-alias o='open -a'
-alias reload='source ~/.zshrc'
+alias o='open -a "$1"'
+alias re='source ~/.zshrc'
+alias clear='clear; source ~/.zshrc'
 
 
 #PLUGINS
 source ~/.zsh/Plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-
+source ~/.zsh/Plugins/web-search.plugin.zsh
 
 
 #PROMPT
@@ -27,3 +28,4 @@ f() {
     cd "$(cat "${XDG_CACHE_HOME:=${HOME}/.cache}/fff/.fff_d")"
 }
 
+source /Users/tonycastaneda/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
