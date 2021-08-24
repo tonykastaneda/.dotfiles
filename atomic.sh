@@ -11,19 +11,23 @@ readPassword() {
       readPassword
    fi
 }
+
+# START
 git clone https://github.com/tonykastaneda/.dotfiles && cd ~/.dotfiles;
+# Vim & Terminal Installer
 sh installer.sh;
+# Brew File Installer
 sh brew.sh;
+# RayCast Directories and Scripts
 cd ~/Documents;
 git clone https://github.com/tonykastaneda/RayCastScripts;
 mkdir "Web Projects";
 mkdir "Screenshots";
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf;
-~/.fzf/install;
+# Vim Auto - Post Installer
 vim +'PlugInstall --sync' +qa;
 # Running Apps In Dock Only
 defaults write com.apple.dock static-only -bool true; killall Dock;
-# Desktop Picture Setter
+# Desktop Picture from /img folder
 osascript -e 'tell application "System Events" to tell every desktop to set picture to "~/.dotfiles/img/desktop.png"';
 # Auto Hide Dock
 defaults write com.apple.Dock autohide -bool TRUE; killall Dock;
