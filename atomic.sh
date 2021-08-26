@@ -28,7 +28,7 @@ vim +'PlugInstall --sync' +qa;
 # Running Apps In Dock Only
 defaults write com.apple.dock static-only -bool true; killall Dock;
 # Desktop Picture from /img folder
-osascript -e 'tell application "System Events" to tell every desktop to set picture to "~/.dotfiles/img/desktop.png"';
+osascript -e 'tell application "System Events" to tell every desktop to set picture to "~/.dotfiles/.misc/img/desktop.png"';
 # Auto Hide Dock
 defaults write com.apple.Dock autohide -bool TRUE; killall Dock;
 # Instant Dock Auto Hide PopUp
