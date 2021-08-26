@@ -37,8 +37,11 @@ brew install appcleaner
 brew install sublime-text
 brew install atom
 brew install inkscape
+brew install lsd
 brew install gimp
 brew install slack
 brew install handbrake
 brew install dropbox
+brew install fuse
 brew install adobe-creative-cloud
+

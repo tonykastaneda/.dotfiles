@@ -23,6 +23,8 @@ function web_search() {
     wolframalpha   "https://www.wolframalpha.com/input/?i="
     archive     "https://web.archive.org/web/*/"
     scholar        "https://scholar.google.com/scholar?q="
+    youtube "https://www.youtube.com/results?search_query="
+    youtubemusic "https://music.youtube.com/search?q="
   )
 
   # check whether the search engine is supported
@@ -47,7 +49,7 @@ function web_search() {
 
 
 alias bing='web_search bing'
-alias google='web_search google'
+alias g='web_search google'
 alias yahoo='web_search yahoo'
 alias ddg='web_search duckduckgo'
 alias sp='web_search startpage'
@@ -62,6 +64,8 @@ alias stackoverflow='web_search stackoverflow'
 alias wolframalpha='web_search wolframalpha'
 alias archive='web_search archive'
 alias scholar='web_search scholar'
+alias yt='web_search youtube'
+alias ytm='web_search youtubemusic'
 
 #add your own !bang searches here
 alias wiki='web_search duckduckgo \!w'
