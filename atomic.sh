@@ -26,13 +26,7 @@ cd ~/Documents;
 git clone https://github.com/tonykastaneda/RayCastScripts;
 mkdir "Web Projects";
 mkdir "Screenshots";
-<<<<<<< Updated upstream
-=======
 
-# Vim Auto - Post Installer
-vim +'PlugInstall --sync' +qa;
-
->>>>>>> Stashed changes
 # Running Apps In Dock Only
 defaults write com.apple.dock static-only -bool true; killall Dock;
 
@@ -47,15 +41,13 @@ defaults write com.apple.Dock autohide-delay -float 0.0001; killall Dock;
 
 # Auto Hide Menubar -- must close all apps ie terminal
 defaults write NSGlobalDomain _HIHideMenuBar -bool true; killall Finder;
-<<<<<<< Updated upstream
+
 # Vim Auto - Post Installer
 vim +'PlugInstall --sync' +qa;
+
 # FZF Install
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf; 
 ~/.fzf/install;
-# Final Out Put
-open -a "iTerm"
-=======
 
 # Sym Links - Utilities Configs
 ln -s ~/.dotfiles/.misc/rclone.conf ~/.config/rclone/rclone.conf 
@@ -63,7 +55,6 @@ ln -s ~/.dotfiles/.misc/config ~/.config/youtube-dl/config
 
 # FINAL OUT PUT
 open -a "iTerm" && killall Terminal
->>>>>>> Stashed changes
 
 
 
