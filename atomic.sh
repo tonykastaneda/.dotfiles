@@ -34,10 +34,6 @@ vim +'PlugInstall --sync' +qa;
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf; 
 ~/.fzf/install;
 
-# Sym Links - Utilities Configs
-ln -s ~/.dotfiles/.misc/rclone.conf ~/.config/rclone/rclone.conf 
-ln -s ~/.dotfiles/.misc/config ~/.config/youtube-dl/config
-
 # Running Apps In Dock Only
 defaults write com.apple.dock static-only -bool true; killall Dock;
 
@@ -52,6 +48,10 @@ defaults write com.apple.Dock autohide-delay -float 0.0001; killall Dock;
 
 # Auto Hide Menubar -- must close all apps ie terminal
 defaults write NSGlobalDomain _HIHideMenuBar -bool true; killall Finder;
+
+# Sym Links - Utilities Configs
+ln -s ~/.dotfiles/.misc/rclone.conf ~/.config/rclone/rclone.conf 
+ln -s ~/.dotfiles/.misc/config ~/.config/youtube-dl/config
 
 # FINAL OUT PUT
 open -a "iTerm" && killall Terminal
