@@ -5,6 +5,7 @@ neofetch
 alias mvim='open -a MacVim.app $1'
 alias ls='lsd'
 alias rclonegui='rclone rcd --rc-web-gui --rc-user=admin --rc-pass=pass --rc-serve'
+alias o='~/.zsh/Plugins/launcher.zsh'
 
 #PLUGINS
 source ~/.zsh/Plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
