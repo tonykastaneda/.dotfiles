@@ -3,9 +3,6 @@ neofetch
 
 #ALIAS
 alias mvim='open -a MacVim.app $1'
-alias qq= 'exit'
-alias re='source ~/.zshrc'
-alias clear='clear; source ~/.zshrc'
 alias ls='lsd'
 alias rclonegui='rclone rcd --rc-web-gui --rc-user=admin --rc-pass=pass --rc-serve'
 
@@ -16,7 +13,7 @@ source ~/.zsh/Plugins/web-search.plugin.zsh
 
 #PROMPT
 setopt PROMPT_SUBST
-PROMPT='🚽 ${PWD/#$HOME/ ➤  } '
+PROMPT='  ばかげた性交 ${PWD/#$HOME/ ➤  } '
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

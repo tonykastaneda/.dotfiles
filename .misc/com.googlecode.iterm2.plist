@@ -447,8 +447,8 @@
 			<key>Label</key>
 			<string></string>
 			<key>Text</key>
-			<string>Close Terminal Window
-Close Terminal Window</string>
+			<string>Close
+Close</string>
 		</dict>
 		<key>0x77-0x100000-0xd</key>
 		<dict>
@@ -560,6 +560,8 @@ NSAlternateQuitMenuItem</string>
 	<array>
 		<dict>
 			<key>ASCII Anti Aliased</key>
+			<true/>
+			<key>ASCII Ligatures</key>
 			<true/>
 			<key>Ambiguous Double Width</key>
 			<false/>
