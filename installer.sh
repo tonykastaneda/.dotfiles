@@ -11,5 +11,3 @@ ln -s ~/.dotfiles/.vimrc ~/.vimrc;
 ln -s ~/.dotfiles/.zsh ~/.zsh;
 ln -s ~/.dotfiles/.zshrc ~/.zshrc;
 ln -s ~/.dotfiles/.misc/nvim ~/.config/nvim
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf; 
-~/.fzf/install
