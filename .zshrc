@@ -7,7 +7,7 @@ alias qq= 'exit'
 alias re='source ~/.zshrc'
 alias clear='clear; source ~/.zshrc'
 alias ls='lsd'
-
+alias rclonegui='rclone rcd --rc-web-gui --rc-user=admin --rc-pass=pass --rc-serve'
 
 #PLUGINS
 source ~/.zsh/Plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh

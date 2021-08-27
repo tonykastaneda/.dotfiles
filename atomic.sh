@@ -14,25 +14,40 @@ readPassword() {
 
 # START
 git clone https://github.com/tonykastaneda/.dotfiles && cd ~/.dotfiles;
+
 # Vim & Terminal Installer
 sh installer.sh;
+
 # Brew File Installer
 sh brew.sh;
+
 # RayCast Directories and Scripts
 cd ~/Documents;
 git clone https://github.com/tonykastaneda/RayCastScripts;
 mkdir "Web Projects";
 mkdir "Screenshots";
+<<<<<<< Updated upstream
+=======
+
+# Vim Auto - Post Installer
+vim +'PlugInstall --sync' +qa;
+
+>>>>>>> Stashed changes
 # Running Apps In Dock Only
 defaults write com.apple.dock static-only -bool true; killall Dock;
+
 # Desktop Picture from /img folder
 osascript -e 'tell application "System Events" to tell every desktop to set picture to "~/.dotfiles/.misc/img/desktop.png"';
+
 # Auto Hide Dock
 defaults write com.apple.Dock autohide -bool TRUE; killall Dock;
+
 # Instant Dock Auto Hide PopUp
 defaults write com.apple.Dock autohide-delay -float 0.0001; killall Dock;
+
 # Auto Hide Menubar -- must close all apps ie terminal
 defaults write NSGlobalDomain _HIHideMenuBar -bool true; killall Finder;
+<<<<<<< Updated upstream
 # Vim Auto - Post Installer
 vim +'PlugInstall --sync' +qa;
 # FZF Install
@@ -40,6 +55,15 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf;
 ~/.fzf/install;
 # Final Out Put
 open -a "iTerm"
+=======
+
+# Sym Links - Utilities Configs
+ln -s ~/.dotfiles/.misc/rclone.conf ~/.config/rclone/rclone.conf 
+ln -s ~/.dotfiles/.misc/config ~/.config/youtube-dl/config
+
+# FINAL OUT PUT
+open -a "iTerm" && killall Terminal
+>>>>>>> Stashed changes
 
 
 
