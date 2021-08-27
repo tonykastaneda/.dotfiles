@@ -23,8 +23,6 @@ cd ~/Documents;
 git clone https://github.com/tonykastaneda/RayCastScripts;
 mkdir "Web Projects";
 mkdir "Screenshots";
-# Vim Auto - Post Installer
-vim +'PlugInstall --sync' +qa;
 # Running Apps In Dock Only
 defaults write com.apple.dock static-only -bool true; killall Dock;
 # Desktop Picture from /img folder
@@ -35,8 +33,13 @@ defaults write com.apple.Dock autohide -bool TRUE; killall Dock;
 defaults write com.apple.Dock autohide-delay -float 0.0001; killall Dock;
 # Auto Hide Menubar -- must close all apps ie terminal
 defaults write NSGlobalDomain _HIHideMenuBar -bool true; killall Finder;
-open -a "iTerm"; 
-killall Terminal
+# Vim Auto - Post Installer
+vim +'PlugInstall --sync' +qa;
+# FZF Install
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf; 
+~/.fzf/install;
+# Final Out Put
+open -a "iTerm"
 
 
 
