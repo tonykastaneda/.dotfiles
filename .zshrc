@@ -6,6 +6,7 @@ alias mvim='open -a MacVim.app $1'
 alias ls='lsd'
 alias rclonegui='rclone rcd --rc-web-gui --rc-user=admin --rc-pass=pass --rc-serve'
 alias o='~/.zsh/Plugins/launcher.zsh'
+alias ca='read input; read output; for f in *.$input; do ffmpeg -i "$f" -c:a $output "${f%.*}.$output"; done'
 
 #PLUGINS
 source ~/.zsh/Plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
