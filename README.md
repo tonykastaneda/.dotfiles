@@ -20,9 +20,8 @@ chmod +x zshstaller.sh
 ```
 ./zshstaller.sh
 ```
----
-or
----
+---or---
+
 ```
 git clone https://github.com/tonykastaneda/.dotfiles && cd ~/.dotfiles; chmod +x vimstaller.sh; ./vimstaller.sh; chmod +x zshstaller.sh; ./zshstaller.sh
 ```
