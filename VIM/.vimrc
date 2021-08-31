@@ -33,14 +33,14 @@ call plug#end()
 "------------------------------------------------------------------------
 
 
-source $HOME/.dotfiles/.vim/settings/thematic.vimrc
-source $HOME/.dotfiles/.vim/settings/sets.vimrc
-source $HOME/.dotfiles/.vim/settings/remaps.vimrc
-source $HOME/.dotfiles/.vim/settings/nerdtree.vimrc
-source $HOME/.dotfiles/.vim/settings/pencil.vimrc
-source $HOME/.dotfiles/.vim/settings/autoclosetag.vimrc
-source $HOME/.dotfiles/.vim/settings/coc.vimrc
-source $HOME/.dotfiles/.vim/settings/markdown.vimrc
+source $HOME/.dotfiles/VIM/.vim/settings/thematic.vimrc
+source $HOME/.dotfiles/VIM/.vim/settings/sets.vimrc
+source $HOME/.dotfiles/VIM/.vim/settings/remaps.vimrc
+source $HOME/.dotfiles/VIM/.vim/settings/nerdtree.vimrc
+source $HOME/.dotfiles/VIM/.vim/settings/pencil.vimrc
+source $HOME/.dotfiles/VIM/.vim/settings/autoclosetag.vimrc
+source $HOME/.dotfiles/VIM/.vim/settings/coc.vimrc
+source $HOME/.dotfiles/VIM/.vim/settings/markdown.vimrc
 
 
 
