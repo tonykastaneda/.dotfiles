@@ -1,60 +1,22 @@
 #!/usr/bin/env bash
-readPassword
-echo $PASSWORD | awk '{print $1}'
 
-readPassword() {
-   echo -n "Password: "
-   read -s PASSWORD
-   echo ""
-   if [[ -z "$PASSWORD" ]]; then
-      printf '%s\n' "A password is required..."
-      readPassword
-   fi
-}
-
-# START
 git clone https://github.com/tonykastaneda/.dotfiles && cd ~/.dotfiles;
 
-# Vim & Terminal Installer
-sh installer.sh;
+# Execute Privileges
+chmod +x brew.sh;
+chmod +x vimstaller.sh;
+chmod +x zshstaller.sh;
+chmod +x raycaststaller.sh;
+chmod +x desktopenv.sh;
+chmod +x symlinkstaller.sh;
 
-# Brew File Installer
+# Script Installers
 sh brew.sh;
+sh vimstaller.sh;
+sh zshstaller.sh;
+sh raycaststaller.sh;
+sh desktopenv.sh;
+sh symlinkstaller.sh;
 
-# RayCast Directories and Scripts
-cd ~/Documents;
-git clone https://github.com/tonykastaneda/RayCastScripts;
-mkdir "Web Projects";
-mkdir "Screenshots";
-
-# Vim Auto - Post Installer
-vim +'PlugInstall --sync' +qa;
-
-# FZF Install
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf; 
-~/.fzf/install;
-
-# Running Apps In Dock Only
-defaults write com.apple.dock static-only -bool true; killall Dock;
-
-# Desktop Picture from /img folder
-osascript -e 'tell application "System Events" to tell every desktop to set picture to "~/.dotfiles/.misc/img/desktop.png"';
-
-# Auto Hide Dock
-defaults write com.apple.Dock autohide -bool TRUE; killall Dock;
-
-# Instant Dock Auto Hide PopUp
-defaults write com.apple.Dock autohide-delay -float 0.0001; killall Dock;
-
-# Auto Hide Menubar -- must close all apps ie terminal
-defaults write NSGlobalDomain _HIHideMenuBar -bool true; killall Finder;
-
-# Sym Links - Utilities Configs
-ln -s ~/.dotfiles/.misc/rclone.conf ~/.config/rclone/rclone.conf 
-ln -s ~/.dotfiles/.misc/config ~/.config/youtube-dl/config
-
-# FINAL OUT PUT
-open -a "iTerm" && killall Terminal
-
-
-
+# Final Output
+open -a "iTerm2" && killall Terminal
