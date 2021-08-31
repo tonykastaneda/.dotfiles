@@ -1,5 +1,5 @@
-# DotFile
-My personal vimrc and zshrc files with plugins
+# CleanBoot
+My start up script for a new mac
 
 ## Vim & Zsh Installer Script
 ```
@@ -9,39 +9,22 @@ git clone https://github.com/tonykastaneda/.dotfiles
 cd ~/.dotfiles
 ```
 ```
-chmod +x installer.sh
+chmod +x vimstaller.sh
 ```
 ```
-./installer.sh
+./vimstaller.sh
 ```
-### Vim Plugin Post Install 
 ```
-:PlugInstall
+chmod +x zshstaller.sh
 ```
+```
+./zshstaller.sh
+```
+---
 or
+---
 ```
-git clone https://github.com/tonykastaneda/.dotfiles; cd ~/.dotfiles; chmod +x installer.sh; ./installer.sh; vim +'PlugInstall --sync' +qa; git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf; ~/.fzf/install;
-```
-
-
-## Brew Post Installer Script
-```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
-```
-git clone https://github.com/tonykastaneda/RayCastScripts
-```
-```
-git clone https://github.com/tonykastaneda/.dotfiles (Skip if Cloned)
-```
-```
-cd ~/.dotfiles
-```
-```
-chmod +x brew.sh
-```
-```
-./brew.sh
+git clone https://github.com/tonykastaneda/.dotfiles && cd ~/.dotfiles; chmod +x vimstaller.sh; ./vimstaller.sh; chmod +x zshstaller.sh; ./zshstaller.sh
 ```
 
 ## Atomic Installer Script
@@ -55,16 +38,7 @@ curl -o atomic.sh https://raw.githubusercontent.com/tonykastaneda/.dotfiles/main
 ./atomic.sh
 ```
 
-## Nuka-cola Installer Script
-```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
-```
-curl -o atomic.sh https://raw.githubusercontent.com/tonykastaneda/.dotfiles/main/atomic.sh; chmod +x atomic.sh; ./atomic.sh
-```
-
-## Uranium-235 - Highly Flammable
-Working - Adobe Creative cloud needs an admin password at the end as well as pressing enter to install Vim Plugins and allow terminal to crear directories with file access
+## Nuka-cola Installer Script - Highly Flammable
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"; curl -o atomic.sh https://raw.githubusercontent.com/tonykastaneda/.dotfiles/main/atomic.sh; chmod +x atomic.sh; ./atomic.sh
 ```
