@@ -7,6 +7,10 @@ alias ls='lsd'
 alias rclonegui='rclone rcd --rc-web-gui --rc-user=admin --rc-pass=pass --rc-serve'
 alias o='~/.zsh/Plugins/launcher.zsh'
 alias ca='read input; read output; for f in *.$input; do ffmpeg -i "$f" -c:a $output "${f%.*}.$output"; done'
+alias yboff='brew services stop yabai'
+alias ybon='brew services start yabai'
+alias ybre='brew services restart yabai'
+alias skhdre='brew services restart skhd'
 
 #PLUGINS
 source ~/.zsh/Plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh

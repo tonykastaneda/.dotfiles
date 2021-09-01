@@ -43,4 +43,6 @@ brew install slack
 brew install handbrake
 brew install dropbox
 brew install fuse
+brew install yabai
+brew install skhd
 brew install adobe-creative-cloud
