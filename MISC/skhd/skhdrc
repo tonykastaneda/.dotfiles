@@ -17,7 +17,7 @@ ctrl - 2  : yabai -m window --display prev; yabai -m display --focus prev
 
 
 # Float / Unfloat Window and center on screen
-hyper - d : yabai -m window --toggle float;\
+hyper - t : yabai -m window --toggle float;\
             yabai -m window --grid 4:4:1:1:2:2
 
 # Rotate Windows 180Degrees
