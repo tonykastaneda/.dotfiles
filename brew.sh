@@ -14,6 +14,8 @@ brew install youtube-dl
 brew install ffmpeg
 brew install speedtest-cli
 brew install neofetch
+brew install yabai
+brew install skhd
 
 
 # GUI-APPLICATIONS
