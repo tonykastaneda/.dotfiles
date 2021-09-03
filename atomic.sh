@@ -15,6 +15,7 @@ sh brew.sh;
 sh vimstaller.sh;
 sh zshstaller.sh;
 sh raycaststaller.sh;
+sh yabainstaller.sh;
 sh desktopenv.sh;
 sh symlinkstaller.sh;
 
