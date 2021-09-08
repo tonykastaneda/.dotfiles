@@ -45,6 +45,7 @@ brew install slack
 brew install handbrake
 brew install dropbox
 brew install fuse
-brew install yabai
-brew install skhd
+brew install koekeishiya/formulae/yabai
+brew install koekeishiya/formulae/skhd
+brew install neovim/neovim/neovim
 brew install adobe-creative-cloud
