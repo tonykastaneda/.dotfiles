@@ -49,7 +49,7 @@ let g:thematic#themes = {
 
 " Thematic - Default Theme
 "------------------------------------------------------------------------
-let g:thematic#theme_name = 'wwdc2016'
+let g:thematic#theme_name = 'dracu'
 let g:gh_color = "soft"
 
 " Light Line Theme
