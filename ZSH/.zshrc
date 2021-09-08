@@ -11,7 +11,7 @@ alias yboff='brew services stop yabai'
 alias ybon='brew services start yabai'
 alias ybre='brew services restart yabai'
 alias skhdre='brew services restart skhd'
-alias swd='open .'
+alias owd='open .'
 
 #PLUGINS
 source ~/.zsh/Plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
@@ -32,5 +32,6 @@ f() {
     cd "$(cat "${XDG_CACHE_HOME:=${HOME}/.cache}/fff/.fff_d")"
 }
 
-source ~/.zsh/Plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export PATH="/usr/local/sbin:$PATH"
+
+source ~/.zsh/Plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
