@@ -12,8 +12,8 @@ ctrl - h : yabai -m display --focus next
 ctrl - l : yabai -m display --focus prev
 
 # Send Window to monitor and Follow Focus
-alt - h  : yabai -m window --display next; yabai -m display --focus next
-alt - l  : yabai -m window --display prev; yabai -m display --focus prev
+#alt - h  : yabai -m window --display next; yabai -m display --focus next
+#alt - l  : yabai -m window --display prev; yabai -m display --focus prev
 
 
 # Float / Unfloat Window and center on screen
