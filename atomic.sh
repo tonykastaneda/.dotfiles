@@ -8,7 +8,6 @@ chmod +x vimstaller.sh;
 chmod +x zshstaller.sh;
 chmod +x raycaststaller.sh;
 chmod +x desktopenv.sh;
-chmod +x symlinkstaller.sh;
 
 # Script Installers
 sh brew.sh;
@@ -17,7 +16,6 @@ sh zshstaller.sh;
 sh raycaststaller.sh;
 sh yabainstaller.sh;
 sh desktopenv.sh;
-sh symlinkstaller.sh;
 
 # Final Output
 open -a "iTerm2" && killall Terminal
