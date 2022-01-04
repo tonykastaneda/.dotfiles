@@ -1,3 +1,0 @@
-# Save all videos under Movies directory in your home directory
--o ~/Documents/YouTube-DL/%(title)s.%(ext)s
-
