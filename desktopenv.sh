@@ -11,6 +11,3 @@ defaults write com.apple.Dock autohide -bool TRUE; killall Dock;
 
 # Instant Dock Auto Hide PopUp
 defaults write com.apple.Dock autohide-delay -float 0.0001; killall Dock;
-
-# Auto Hide Menubar -- must close all apps ie terminal
-defaults write NSGlobalDomain _HIHideMenuBar -bool true; killall Finder;
