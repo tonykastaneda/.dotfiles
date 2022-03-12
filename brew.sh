@@ -6,25 +6,17 @@ brew install python
 brew install node
 brew install yarn
 brew install git
-brew install code-minimap
 brew install fff
-brew install rclone
 brew install htop
-brew install youtube-dl
-brew install ffmpeg
 brew install speedtest-cli
 brew install neofetch
-brew install yabai
-brew install skhd
 
 
 # GUI-APPLICATIONS
 brew install google-chrome
 brew install discord
-brew install google-backup-and-sync
 brew install visual-studio-code
 brew install macvim
-brew install glance
 brew install raycast
 brew install iterm2
 brew install bartender
