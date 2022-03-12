@@ -28,5 +28,5 @@ brew install amethyst
 brew install appcleaner
 brew install lsd
 brew install slack
-brew install handbrake
+brew install --cask handbrake
 brew install dropbox
