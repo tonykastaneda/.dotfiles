@@ -45,6 +45,7 @@ brew install google-drive
 brew install transmission
 brew install balenaetcher
 brew install soundsource
+brew install superkey
 brew install affinity-designer
 brew install affinity-photo
 brew install affinity-publisher
