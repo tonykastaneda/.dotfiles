@@ -7,14 +7,13 @@ brew install node
 brew install yarn
 brew install git
 brew install fff
-brew install htop
 brew install speedtest-cli
 brew install neofetch
 brew install lsd
 brew install mas
 
 # GUI-APPLICATIONS
-brew install hyper
+brew install superkey
 brew install google-chrome
 brew install discord
 brew install visual-studio-code
@@ -45,7 +44,6 @@ brew install google-drive
 brew install transmission
 brew install balenaetcher
 brew install soundsource
-brew install superkey
 brew install affinity-designer
 brew install affinity-photo
 brew install affinity-publisher
