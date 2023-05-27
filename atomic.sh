@@ -7,7 +7,6 @@ chmod +x zsh.sh;
 chmod +x raycast.sh;
 chmod +x brew.sh;
 chmod +x desktopenv.sh;
-chmod +x hyper.sh;
 chmod +x nonbrew.sh;
 
 # Script Installers
