@@ -15,7 +15,6 @@ brew install mas
 # GUI-APPLICATIONS
 brew install superkey
 brew install google-chrome
-brew install discord
 brew install visual-studio-code
 brew install raycast
 brew install daisydisk
