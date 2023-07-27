@@ -7,10 +7,8 @@ brew install node
 brew install yarn
 brew install git
 brew install fff
-brew install speedtest-cli
 brew install neofetch
 brew install lsd
-brew install mas
 
 # GUI-APPLICATIONS
 brew install superkey
@@ -20,7 +18,6 @@ brew install raycast
 brew install daisydisk
 brew install dockey
 brew install iina
-brew install openinterminal
 brew install appcleaner
 brew install slack
 brew install handbrake
