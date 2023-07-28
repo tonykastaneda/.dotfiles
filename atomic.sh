@@ -13,6 +13,5 @@ sh zsh.sh;
 sh raycast.sh;
 sh brew.sh;
 sh desktop.sh;
-sh hyper.sh;
 
 # Bottle Opener
