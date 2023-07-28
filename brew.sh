@@ -11,6 +11,7 @@ brew install neofetch
 brew install lsd
 
 # GUI-APPLICATIONS
+brew install arc
 brew install superkey
 brew install google-chrome
 brew install visual-studio-code
