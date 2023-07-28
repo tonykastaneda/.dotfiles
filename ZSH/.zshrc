@@ -3,7 +3,7 @@ neofetch
 
 #ALIAS
 alias ls='lsd'
-alias o='~/.zsh/Plugins/zsh-launcher.zsh'
+#alias o='~/.zsh/Plugins/zsh-launcher.zsh'
 alias owd='open .'
 
 #PLUGINS
