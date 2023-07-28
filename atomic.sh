@@ -15,3 +15,4 @@ sh brew.sh;
 sh desktop.sh;
 
 # Bottle Opener
+open "/Applications/Arc.app"
