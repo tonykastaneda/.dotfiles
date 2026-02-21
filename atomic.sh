@@ -12,6 +12,3 @@ chmod a+x install-deskenv.sh;
 ./install-brew.sh;
 ./install-config.sh;
 ./install-deskenv.sh;
-
-# The hat trick
-open -a "arc"
