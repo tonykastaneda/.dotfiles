@@ -22,8 +22,6 @@ brew install yarn
 brew install git
 brew install fastfetch
 brew install lsd
-brew install yabai
-brew install skhd
 
 
 # GUI-APPLICATIONS
@@ -32,17 +30,14 @@ brew install visual-studio-code
 brew install raycast
 brew install daisydisk
 brew install dockey
-brew install iina
-brew install amethyst
+brew install vlc
 brew install appcleaner
 brew install slack
-brew install numi
 brew install macs-fan-control
 brew install firefox
 brew install imageoptim
 brew install contexts
 brew install superkey
-brew install crossover
 brew install rightfont
 brew install mirrordisplays
 brew install cleanshot
@@ -50,4 +45,3 @@ brew install rectangle-pro
 brew install rocket
 brew install google-drive
 brew install adobe-creative-cloud
-brew install arc
