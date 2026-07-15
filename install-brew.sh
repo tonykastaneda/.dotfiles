@@ -26,7 +26,7 @@ brew install lsd
 
 # GUI-APPLICATIONS
 brew install google-chrome
-brew install visual-studio-code
+brew install zed
 brew install raycast
 brew install daisydisk
 brew install dockey
@@ -34,7 +34,7 @@ brew install vlc
 brew install appcleaner
 brew install slack
 brew install macs-fan-control
-brew install firefox
+brew install zen
 brew install imageoptim
 brew install contexts
 brew install superkey
