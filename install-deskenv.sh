@@ -17,7 +17,3 @@ mkdir ~/Documents/Screenshots/
 
 # Desktop Temp
 mkdir ~/Documents/DTMP/
-
-# JetBrains Nerd Font Install
-cp ~/dotfiles/.config/deskenv/jetbrains/* ~/Library/Fonts/
-
