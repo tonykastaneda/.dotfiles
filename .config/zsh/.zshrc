@@ -4,7 +4,6 @@ time fastfetch
 # Paths
 export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$PATH:/Users/tonycastaneda/.nvm/versions/node/v18.20.4/bin"
 
 # NVM
 export NVM_DIR="$HOME/.nvm"

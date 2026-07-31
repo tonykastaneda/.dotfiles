@@ -18,7 +18,7 @@ defaults write com.apple.dock autohide-time-modifier -float 0.15
 killall Dock >/dev/null 2>&1 || true
 
 # Wallpaper
-WALLPAPER="${HOME}/dotfiles/.config/deskenv/desktop.png"
+WALLPAPER="${HOME}/.dotfiles/.config/deskenv/desktop.png"
 
 if [[ -f "$WALLPAPER" ]]; then
 	osascript <<EOF

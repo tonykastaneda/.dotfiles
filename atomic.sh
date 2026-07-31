@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # dotfiles git clone
-git clone https://github.com/tonykastaneda/dotfiles && cd ~/dotfiles;
+git clone https://github.com/tonykastaneda/.dotfiles ~/.dotfiles && cd ~/.dotfiles;
 
 # Execute Privileges
 chmod a+x install-brew.sh;

@@ -13,15 +13,22 @@ fi
 # Now install Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
+# Put brew on PATH for the rest of this script (installer only wires up ~/.zprofile for future shells)
+if [ -x /opt/homebrew/bin/brew ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -x /usr/local/bin/brew ]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+fi
+
 
 # DEPENDENCIES
-brew install cask
 brew install python
 brew install node
 brew install yarn
 brew install git
 brew install fastfetch
 brew install lsd
+brew install vim
 
 
 # GUI-APPLICATIONS
