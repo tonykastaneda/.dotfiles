@@ -29,6 +29,10 @@ brew install git
 brew install fastfetch
 brew install lsd
 brew install vim
+brew install nnn
+brew install htop
+
+
 
 
 # GUI-APPLICATIONS
