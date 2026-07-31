@@ -1,38 +1,45 @@
-# FLEX
+# Startup
 time fastfetch
 
+# Paths
+export PATH="/usr/local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$PATH:/Users/tonycastaneda/.nvm/versions/node/v18.20.4/bin"
 
-#ALIAS
-alias apps='~/.zsh/Plugins/applauncher.zsh'
-alias owd='open .'
-alias key='echo "a2luZXRpYw=="'
+# NVM
+export NVM_DIR="$HOME/.nvm"
+
+[[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
+[[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
+
+
+# Aliases
+alias rc='zed ~/.zshrc'
+alias apps='~/.zsh/Plugins/app-search.sh'
+alias plugins='open ~/.zsh/Plugins/'
+
+alias code='cursor . --classic'
+alias curse='cursor . --classic'
+alias fuckit='claude --dangerously-skip-permissions'
+
+alias gitlogs='git log --oneline --graph --decorate'
+alias ranch='git branch -a'
+alias swanch='git switch'
+alias reep='cd ~/Documents/GitHub'
+alias reepos='cd ~/Documents/GitHub'
+
 alias t='touch'
+alias owd='open .'
 
-alias exe='npm start'
+alias py='python3'
+alias makepyenv='python3 -m venv .venv'
+alias pyenv='source .venv/bin/activate'
 
-alias pya='source .venv/bin/activate'
-
-alias py='/opt/homebrew/bin/python3'
-alias python='/opt/homebrew/bin/python3'
-alias pip='/opt/homebrew/bin/pip3'
-
-alias pipin='pip install --break-system-packages'
-alias pipun='pip uninstall --break-system-packages'
+alias tb='terminal-browser'
 
 
-
-
-
-#PLUGINS
+# Plugins
 source ~/.zsh/Plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 source ~/.zsh/Plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/Plugins/kali-like.zsh
-
-
-
-#FZF
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-
-
-
+source ~/.zsh/Plugins/fzf.zsh

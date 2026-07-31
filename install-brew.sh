@@ -39,7 +39,6 @@ brew install imageoptim
 brew install contexts
 brew install superkey
 brew install rightfont
-brew install mirrordisplays
 brew install cleanshot
 brew install rectangle-pro
 brew install rocket
