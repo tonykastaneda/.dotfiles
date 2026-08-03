@@ -18,6 +18,7 @@ alias gitlogs='git log --oneline --graph --decorate'
 alias ranch='git branch -a'
 alias swanch='git switch'
 alias reep='cd ~/Documents/GitHub'
+alias reeps='cd ~/Documents/GitHub'
 alias reepos='cd ~/Documents/GitHub'
 
 alias t='touch'
