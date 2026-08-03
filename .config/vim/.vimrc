@@ -230,3 +230,4 @@ function! s:CommandAlias(lhs, rhs) abort
 endfunction
 
 call s:CommandAlias('save', 'w')
+call s:CommandAlias('rc', 'source $MYVIMRC')
