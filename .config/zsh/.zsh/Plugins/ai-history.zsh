@@ -300,18 +300,23 @@ load_grok() {
         cwd="$(json_str "$file" cwd)"
 
         # session_summary is usually empty, so fall back to the first
-        # real user message in the chat transcript.
+        # genuinely-typed user message — skip injected <system-reminder>
+        # turns, which aren't something the user actually wrote.
         title="$(json_str "$file" session_summary)"
 
         if [[ -z "$title" ]]; then
             title="$(
-                grep -m1 '"type":"user"' "$chat" 2>/dev/null |
+                grep '"type":"user"' "$chat" 2>/dev/null |
                 sed -E 's/.*"text":"([^"]*)".*/\1/' |
+                grep -v '^<system-reminder>' |
+                head -1 |
                 cut -c1-70
             )"
         fi
 
-        [[ -n "$title" ]] || title="Grok session"
+        # No genuine user turn anywhere in this session — it's not a real
+        # conversation, so skip it entirely rather than showing junk.
+        [[ -n "$title" ]] || continue
 
         mtime="$(stat -f "%m" "$chat" 2>/dev/null || stat -f "%m" "$file" 2>/dev/null || echo 0)"
 
@@ -416,7 +421,7 @@ selection="$(
         --delimiter=$'\t' \
         --with-nth=1,2,3 \
         --prompt="Resume> " \
-        --height=19 \
+        --height=35 \
         --layout=reverse \
         --header="Agent    Time              Conversation" \
         --footer=$'↑↓ navigate  |  ENTER resume  |  ESC quit'
