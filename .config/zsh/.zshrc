@@ -11,7 +11,7 @@ alias rc='zed ~/.zshrc'
 
 alias code='zed .'
 alias cunt='cursor . --classic'
-alias agent='cursor-agent'   # grok's installer hijacks the bare `agent` binary name on (re)install
+alias agent='cursor-agent'
 alias fuckit='claude --dangerously-skip-permissions'
 alias fuckme='codex --dangerously-bypass-approvals-and-sandbox'
 
@@ -23,7 +23,6 @@ alias lit='cd ~/Documents/GitHub'
 alias t='touch'
 alias owd='open .'
 alias lsd='lsd -1'
-alias vim='nvim'
 
 alias py='python3'
 alias makepyenv='python3 -m venv .venv'
@@ -39,10 +38,11 @@ source ~/.zsh/Plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/Plugins/kali-like.zsh
 source ~/.zsh/Plugins/fzf/fzf.zsh
 source ~/.zsh/Plugins/gfla-pricing.zsh
+source ~/.zsh/Plugins/agents.zsh
 
 alias tb='terminal-browser'
+alias vs='tode'
 alias apps='~/.zsh/Plugins/app-search.zsh'
-alias chat='~/.zsh/Plugins/ai-history.zsh'
 
 # >>> grok installer >>>
 export PATH="$HOME/.grok/bin:$PATH"

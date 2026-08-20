@@ -104,19 +104,13 @@ BLUE=$'\033[38;5;39m'
 GREEN=$'\033[38;5;82m'
 LAVENDER=$'\033[38;5;141m'
 
-declare -a PROVIDERS
-declare -a SESSION_IDS
-declare -a TITLES
-declare -a TIMES
-declare -a WORKSPACES
-
 # ------------------------------------------------------------
 # Helpers
 # ------------------------------------------------------------
 
 format_time() {
     local epoch="$1"
-    date -r "$epoch" "+%Y-%m-%d %H:%M" 2>/dev/null || echo ""
+    date -r "$epoch" "+%Y-%m-%d %I:%M %p" 2>/dev/null || echo ""
 }
 
 # Pull a scalar string value out of flat JSON without a jq dependency.
@@ -128,19 +122,94 @@ json_str() {
         sed -E "s/\"${key}\": *\"//;s/\"\$//"
 }
 
-add_session() {
-    PROVIDERS+=("$1")
-    SESSION_IDS+=("$2")
-    TITLES+=("$3")
-    TIMES+=("$4")
-    WORKSPACES+=("${5:-}")
+# Turn a raw extracted fragment into a display-safe title: collapse
+# literal \n/\t escape artifacts and repeated whitespace, and reject
+# strings that still look like raw JSON or injected/synthetic preamble
+# rather than something a human actually typed. Echoes "" if rejected.
+clean_title() {
+    local raw="$1" cleaned
+
+    [[ -n "$raw" ]] || { echo ""; return; }
+
+    cleaned="${raw//\\n/ }"
+    cleaned="${cleaned//\\t/ }"
+    cleaned="$(echo "$cleaned" | tr -s '[:space:]' ' ')"
+    cleaned="${cleaned## }"
+    cleaned="${cleaned%% }"
+
+    case "$cleaned" in
+        "{"*|"<"[A-Za-z]*)
+            echo ""
+            return
+            ;;
+    esac
+
+    echo "$cleaned" | cut -c1-70
+}
+
+# Scan a JSONL transcript for the first genuinely-typed user message,
+# skipping lines whose extraction fails (raw JSON leaking through) or
+# whose content is synthetic/injected preamble — system reminders, tool
+# tags, image-attachment references, etc.
+#
+# Session files can contain individual lines tens of megabytes long
+# (e.g. a pasted image as inline base64) — reading such a line into an
+# unbounded field, as plain awk or a naive `grep -m1 | sed` pipeline
+# would, costs the better part of a second EACH, dominating startup
+# time. `grep -o 'PATTERN.\{0,250\}'` extracts only a bounded window
+# around each match without ever materializing the full line, so the
+# huge-line cost disappears; awk then does the cheap cleanup/rejection
+# work on that small piped output. 250 (not e.g. 300) because macOS's
+# /usr/bin/grep hard-caps interval repetition at 255 and silently
+# produces zero matches past that — no error on stdout, easy to miss.
+# Avoids jq: matches either a plain string ("content":"...") or a
+# nested content-array ("content":[{"text":"..."}]) shape via
+# greedy-backtracking regex.
+# Args: file, grep-style pattern identifying a user-turn line
+extract_user_title() {
+    local file="$1" role_pattern="$2"
+
+    grep -m 20 -o "${role_pattern}.\{0,250\}" "$file" 2>/dev/null | awk '
+        {
+            line = $0
+            if (match(line, /"(content|text)":"[^"]*"/)) {
+                frag = substr(line, RSTART, RLENGTH)
+                sub(/^"[a-z]+":"/, "", frag)
+                sub(/"$/, "", frag)
+            } else {
+                next
+            }
+            gsub(/\\n/, " ", frag)
+            gsub(/\\t/, " ", frag)
+            gsub(/  +/, " ", frag)
+            gsub(/^ +/, "", frag)
+            gsub(/ +$/, "", frag)
+            if (frag ~ /^\{/ || frag ~ /^<[a-zA-Z_-]+[ >]/) next
+            if (length(frag) > 0) {
+                print substr(frag, 1, 70)
+                exit
+            }
+        }
+    '
 }
 
 # ------------------------------------------------------------
-# Claude Code
+# Phase 1: fast metadata-only scan per provider — no title
+# extraction (that's the expensive part, deferred to Phase 2's
+# emit_rows). Each scan_* prints one tab-delimited row per
+# candidate session:
+#   mtime  provider  titlefile  id  fallbackfile  workspace
+# titlefile is what Phase 2 runs title-extraction against.
+# fallbackfile is Grok-only (chat_history.jsonl, used when
+# session_summary is empty) — "-" for the other three, since
+# zsh's `read` collapses a genuinely-empty field that has more
+# fields after it (shifting everything past it by one); a
+# placeholder in a middle field sidesteps that entirely. Only
+# workspace is left truly empty when unused, since it's always
+# the last field and nothing follows it to shift.
 # ------------------------------------------------------------
 
-load_claude() {
+scan_claude() {
     local projects="$CLAUDE_DIR/projects"
 
     [[ -d "$projects" ]] || return
@@ -148,7 +217,7 @@ load_claude() {
     # NOTE: locals must be declared once, outside the loop body — declaring
     # them fresh on every iteration of a `while read < <(...)` loop causes
     # zsh to spew `var=value` lines to stdout.
-    local file id title mtime
+    local file id mtime
 
     while IFS= read -r file; do
         [[ -f "$file" ]] || continue
@@ -156,21 +225,7 @@ load_claude() {
         id="$(basename "$file" .jsonl)"
         mtime="$(stat -f "%m" "$file" 2>/dev/null || echo 0)"
 
-        # Try to grab the first user message as the title.
-        # Avoid jq dependency: pull a useful-looking text fragment.
-        title="$(
-            grep -m1 '"type":"user"' "$file" 2>/dev/null |
-            sed -E 's/.*"content":"([^"]*)".*/\1/' |
-            cut -c1-70
-        )"
-
-        [[ -n "$title" ]] || title="Claude session"
-
-        add_session \
-            "Claude" \
-            "$id" \
-            "$title" \
-            "$mtime"
+        printf '%s\tClaude\t%s\t%s\t-\t\n' "$mtime" "$file" "$id"
 
     done < <(
         find "$projects" \
@@ -180,16 +235,12 @@ load_claude() {
     )
 }
 
-# ------------------------------------------------------------
-# Codex
-# ------------------------------------------------------------
-
-load_codex() {
+scan_codex() {
     local sessions="$CODEX_DIR/sessions"
 
     [[ -d "$sessions" ]] || return
 
-    local file filename id title mtime
+    local file filename id mtime
 
     while IFS= read -r file; do
         [[ -f "$file" ]] || continue
@@ -207,20 +258,7 @@ load_codex() {
 
         [[ -n "$id" ]] || id="${filename%.jsonl}"
 
-        # Try to locate first actual user prompt.
-        title="$(
-            grep -m1 '"role":"user"' "$file" 2>/dev/null |
-            sed -E 's/.*"content":"([^"]*)".*/\1/' |
-            cut -c1-70
-        )"
-
-        [[ -n "$title" ]] || title="Codex session"
-
-        add_session \
-            "Codex" \
-            "$id" \
-            "$title" \
-            "$mtime"
+        printf '%s\tCodex\t%s\t%s\t-\t\n' "$mtime" "$file" "$id"
 
     done < <(
         find "$sessions" \
@@ -230,16 +268,12 @@ load_codex() {
     )
 }
 
-# ------------------------------------------------------------
-# Cursor
-# ------------------------------------------------------------
-
-load_cursor() {
+scan_cursor() {
     local chats="$CURSOR_DIR/chats"
 
     [[ -d "$chats" ]] || return
 
-    local file id title cwd mtime_ms mtime
+    local file id cwd mtime_ms mtime
 
     while IFS= read -r file; do
         [[ -f "$file" ]] || continue
@@ -248,10 +282,6 @@ load_cursor() {
         grep -q '"hasConversation": *true' "$file" 2>/dev/null || continue
 
         id="$(basename "$(dirname "$file")")"
-
-        title="$(json_str "$file" title)"
-        [[ -n "$title" ]] || title="Cursor session"
-
         cwd="$(json_str "$file" cwd)"
 
         mtime_ms="$(grep -o '"updatedAtMs": *[0-9]*' "$file" 2>/dev/null | head -1 | grep -o '[0-9]*$')"
@@ -261,12 +291,7 @@ load_cursor() {
             mtime="$(stat -f "%m" "$file" 2>/dev/null || echo 0)"
         fi
 
-        add_session \
-            "Cursor" \
-            "$id" \
-            "$title" \
-            "$mtime" \
-            "$cwd"
+        printf '%s\tCursor\t%s\t%s\t-\t%s\n' "$mtime" "$file" "$id" "$cwd"
 
     done < <(
         find "$chats" \
@@ -276,16 +301,12 @@ load_cursor() {
     )
 }
 
-# ------------------------------------------------------------
-# Grok
-# ------------------------------------------------------------
-
-load_grok() {
+scan_grok() {
     local sessions="$GROK_DIR/sessions"
 
     [[ -d "$sessions" ]] || return
 
-    local file id title cwd chat mtime
+    local file id cwd chat mtime
 
     while IFS= read -r file; do
         [[ -f "$file" ]] || continue
@@ -296,36 +317,11 @@ load_grok() {
         [[ -f "$chat" ]] || continue
 
         id="$(basename "$(dirname "$file")")"
-
         cwd="$(json_str "$file" cwd)"
-
-        # session_summary is usually empty, so fall back to the first
-        # genuinely-typed user message — skip injected <system-reminder>
-        # turns, which aren't something the user actually wrote.
-        title="$(json_str "$file" session_summary)"
-
-        if [[ -z "$title" ]]; then
-            title="$(
-                grep '"type":"user"' "$chat" 2>/dev/null |
-                sed -E 's/.*"text":"([^"]*)".*/\1/' |
-                grep -v '^<system-reminder>' |
-                head -1 |
-                cut -c1-70
-            )"
-        fi
-
-        # No genuine user turn anywhere in this session — it's not a real
-        # conversation, so skip it entirely rather than showing junk.
-        [[ -n "$title" ]] || continue
 
         mtime="$(stat -f "%m" "$chat" 2>/dev/null || stat -f "%m" "$file" 2>/dev/null || echo 0)"
 
-        add_session \
-            "Grok" \
-            "$id" \
-            "$title" \
-            "$mtime" \
-            "$cwd"
+        printf '%s\tGrok\t%s\t%s\t%s\t%s\n' "$mtime" "$file" "$id" "$chat" "$cwd"
 
     done < <(
         find "$sessions" \
@@ -336,55 +332,146 @@ load_grok() {
 }
 
 # ------------------------------------------------------------
-# Load
+# Phase 2: reads sorted Phase-1 rows from stdin and streams a
+# resolved "provider mtime title id workspace project" record
+# the instant each is ready — this is the only place the
+# per-provider title-extraction dispatch happens.
+#
+# "project" is "StartFolder → LastFolderWritten" — the folder
+# name (not full path) the session started in, and the folder
+# name of whatever file it last wrote to. When a session never
+# left its starting folder, both sides show the same name.
+#
+# Per-provider reliability of "last written" varies with what
+# each tool actually records:
+#   Claude — reliable: every Write/Edit tool call logs an exact
+#     "file_path", so the true last write is known.
+#   Cursor — reliable: cursor-agent also writes a plain JSONL
+#     transcript (separate from its SQLite chat store) with the
+#     same Write/StrReplace tool-call shape as Claude's; its
+#     path is derived directly from the already-known cwd + id
+#     rather than searched for.
+#   Grok — best-effort/unverified: assumed to follow the same
+#     "file_path" convention as Claude, but every Grok session on
+#     this machine is a ghost session (see load filtering above),
+#     so there is no real data to confirm this against.
+#   Codex — not attempted: Codex has no dedicated write tool, it
+#     runs arbitrary shell commands instead, and every regex tried
+#     for spotting a file redirect in that shell text (`> foo`,
+#     path-shaped targets, etc.) produced false positives against
+#     real sessions (matched unrelated `>` in prose/XML-ish tags).
+#     Rather than show a misleading folder, Codex just shows its
+#     start folder on both sides of the arrow.
 # ------------------------------------------------------------
 
-load_claude
-load_codex
-load_cursor
-load_grok
+emit_rows() {
+    # NOTE: locals declared once, outside the loop body — same
+    # while-read gotcha as scan_claude et al. above.
+    local mtime provider titlefile id fallbackfile workspace title
+    local start_path last_path start_name last_name project transcript
 
-COUNT=${#SESSION_IDS[@]}
+    while IFS=$'\t' read -r mtime provider titlefile id fallbackfile workspace; do
+        last_path=""
 
-if (( COUNT == 0 )); then
+        case "$provider" in
+            Claude)
+                title="$(extract_user_title "$titlefile" '"type":"user"')"
+                [[ -n "$title" ]] || title="Claude session"
+
+                start_path="$(grep -m1 -o '"cwd":"[^"]\{0,250\}"' "$titlefile" 2>/dev/null | sed -E 's/"cwd":"//;s/"$//')"
+                last_path="$(grep -o '"file_path":"[^"]\{0,250\}"' "$titlefile" 2>/dev/null | tail -1 | sed -E 's/"file_path":"//;s/"$//')"
+                ;;
+            Codex)
+                title="$(extract_user_title "$titlefile" '"role":"user"')"
+                [[ -n "$title" ]] || title="Codex session"
+
+                start_path="$(grep -m1 -o '"cwd":"[^"]\{0,250\}"' "$titlefile" 2>/dev/null | sed -E 's/"cwd":"//;s/"$//')"
+                ;;
+            Cursor)
+                title="$(json_str "$titlefile" title)"
+                [[ -n "$title" ]] || title="Cursor session"
+
+                start_path="$workspace"
+                if [[ -n "$workspace" ]]; then
+                    transcript="$HOME/.cursor/projects/$(echo "$workspace" | sed 's#^/##; s#/#-#g')/agent-transcripts/${id}/${id}.jsonl"
+                    if [[ -f "$transcript" ]]; then
+                        last_path="$(grep -o '"name":"\(Write\|StrReplace\)","input":{"path":"[^"]\{0,250\}"' "$transcript" 2>/dev/null | tail -1 | sed -E 's/.*"path":"//;s/"$//')"
+                    fi
+                fi
+                ;;
+            Grok)
+                # session_summary is usually empty, so fall back to the
+                # first genuinely-typed user message.
+                title="$(json_str "$titlefile" session_summary)"
+                [[ -n "$title" ]] && title="$(clean_title "$title")"
+
+                if [[ -z "$title" ]]; then
+                    title="$(extract_user_title "$fallbackfile" '"type":"user"')"
+                fi
+
+                # No genuine user turn anywhere in this session — it's
+                # not a real conversation, so skip it entirely rather
+                # than showing junk.
+                [[ -n "$title" ]] || continue
+
+                start_path="$workspace"
+                last_path="$(grep -o '"file_path":"[^"]\{0,250\}"' "$fallbackfile" 2>/dev/null | tail -1 | sed -E 's/"file_path":"//;s/"$//')"
+                ;;
+        esac
+
+        start_name="${start_path:t}"
+        [[ -n "$start_name" ]] || start_name="?"
+
+        if [[ -n "$last_path" ]]; then
+            last_name="${last_path:h:t}"
+            [[ -n "$last_name" ]] || last_name="$start_name"
+        else
+            last_name="$start_name"
+        fi
+
+        project="${start_name} → ${last_name}"
+
+        printf '%s\t%s\t%s\t%s\t%s\t%s\n' "$provider" "$mtime" "$title" "$id" "$project" "$workspace"
+    done
+}
+
+# ------------------------------------------------------------
+# Phase 1: run the fast scan across all four providers up front.
+# No title extraction happens here, so this is expected to
+# complete in well under a second even across hundreds of
+# sessions — everything after this point streams.
+# ------------------------------------------------------------
+
+meta_raw="$( { scan_claude; scan_codex; scan_cursor; scan_grok; } )"
+
+if [[ -z "$meta_raw" ]]; then
     echo "No Claude Code, Codex, Cursor, or Grok sessions found."
     exit 1
 fi
 
 # ------------------------------------------------------------
-# Sort newest first
-#
-# zsh arrays are 1-indexed by default, so indices must run 1..COUNT
-# (not 0..COUNT-1) to line up with PROVIDERS/SESSION_IDS/TITLES/TIMES.
-# ------------------------------------------------------------
-
-declare -a ORDER
-
-while IFS= read -r index; do
-    ORDER+=("$index")
-done < <(
-    for ((i=1; i<=COUNT; i++)); do
-        printf '%s %s\n' "${TIMES[$i]}" "$i"
-    done |
-    sort -rn |
-    awk '{print $2}'
-)
-
-# ------------------------------------------------------------
-# --list / -l: print the 10 most recent conversations and exit
+# --list / -l: print the 10 most recent conversations and exit.
+# Reuses the same scan -> sort -> emit_rows pipeline as the fzf
+# picker below, so the per-provider title-dispatch logic exists
+# in exactly one place. `head -10` closing early also naturally
+# caps title-extraction work to roughly the top 10 sessions.
 # ------------------------------------------------------------
 
 if [[ "${1:-}" == "-l" || "${1:-}" == "--list" ]]; then
-    shown=0
-    printf "%s%-8s  %-16s  %-50s%s\n" "$BOLD" "Agent" "Time" "Conversation" "$RESET"
-    for index in "${ORDER[@]}"; do
-        (( shown >= 10 )) && break
-        printf "%-8s  %-16s  %-50s\n" \
-            "${PROVIDERS[$index]}" \
-            "$(format_time "${TIMES[$index]}")" \
-            "${TITLES[$index][1,50]}"
-        ((shown++))
-    done
+    printf "%s%-8s  %-19s  %-32s  %-50s%s\n" "$BOLD" "Agent" "Time" "Project" "Conversation" "$RESET"
+
+    printf '%s\n' "$meta_raw" |
+        sort -t $'\t' -k1,1rn |
+        emit_rows |
+        head -10 |
+        while IFS=$'\t' read -r provider mtime title id project workspace; do
+            printf "%-8s  %-19s  %-32s  %-50s\n" \
+                "$provider" \
+                "$(format_time "$mtime")" \
+                "${project[1,32]}" \
+                "${title[1,50]}"
+        done
+
     exit 0
 fi
 
@@ -397,44 +484,50 @@ if ! command -v fzf >/dev/null 2>&1; then
     exit 1
 fi
 
-declare -a MENU_LINES
-declare provider_color
-
-for index in "${ORDER[@]}"; do
-    case "${PROVIDERS[$index]}" in
-        Claude) provider_color="$ORANGE" ;;
-        Codex)  provider_color="$BLUE" ;;
-        Grok)   provider_color="$GREEN" ;;
-        Cursor) provider_color="$LAVENDER" ;;
-        *)      provider_color="$RESET" ;;
-    esac
-
-    MENU_LINES+=("${provider_color}${PROVIDERS[$index]}${RESET}"$'\t'"$(format_time "${TIMES[$index]}")"$'\t'"${TITLES[$index]}"$'\t'"${index}")
-done
-
 clear
 
+declare provider_color
+
 selection="$(
-    printf '%s\n' "${MENU_LINES[@]}" |
+    printf '%s\n' "$meta_raw" |
+    sort -t $'\t' -k1,1rn |
+    emit_rows |
+    while IFS=$'\t' read -r provider mtime title id project workspace; do
+        case "$provider" in
+            Claude) provider_color="$ORANGE" ;;
+            Codex)  provider_color="$BLUE" ;;
+            Grok)   provider_color="$GREEN" ;;
+            Cursor) provider_color="$LAVENDER" ;;
+            *)      provider_color="$RESET" ;;
+        esac
+
+        # Pad each visible column to a fixed width so rows line up —
+        # padding happens on the plain text before it's wrapped in
+        # ANSI color codes, since color escapes would otherwise throw
+        # off printf's width calculation.
+        printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\n' \
+            "${provider_color}$(printf '%-8s' "$provider")${RESET}" \
+            "$(printf '%-19s' "$(format_time "$mtime")")" \
+            "$(printf '%-32s' "${project[1,32]}")" \
+            "$title" \
+            "$provider" \
+            "$id" \
+            "$workspace"
+    done |
     fzf \
         --ansi \
         --delimiter=$'\t' \
-        --with-nth=1,2,3 \
+        --with-nth=1,2,3,4 \
         --prompt="Resume> " \
         --height=35 \
         --layout=reverse \
-        --header="Agent    Time              Conversation" \
+        --header="$(printf '%-8s\t%-19s\t%-32s\tConversation' "Agent" "Time" "Project")" \
         --footer=$'↑↓ navigate  |  ENTER resume  |  ESC quit'
 )"
 
 [[ -n "$selection" ]] || exit 0
 
-selected="${selection##*$'\t'}"
-
-provider="${PROVIDERS[$selected]}"
-session="${SESSION_IDS[$selected]}"
-title="${TITLES[$selected]}"
-workspace="${WORKSPACES[$selected]}"
+IFS=$'\t' read -r _ _ _ title provider session workspace <<< "$selection"
 
 clear
 
