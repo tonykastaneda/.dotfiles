@@ -23,6 +23,7 @@ alias lit='cd ~/Documents/GitHub'
 alias t='touch'
 alias owd='open .'
 alias lsd='lsd -1'
+alias vim='nvim'
 
 alias py='python3'
 alias makepyenv='python3 -m venv .venv'

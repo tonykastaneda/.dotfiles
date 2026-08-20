@@ -28,9 +28,10 @@ brew install yarn
 brew install git
 brew install fastfetch
 brew install lsd
-brew install vim
+brew install neovim
 brew install nnn
 brew install htop
+brew install fzf
 
 
 
@@ -47,7 +48,6 @@ brew install slack
 brew install macs-fan-control
 brew install zen
 brew install imageoptim
-brew install contexts
 brew install superkey
 brew install rightfont
 brew install cleanshot

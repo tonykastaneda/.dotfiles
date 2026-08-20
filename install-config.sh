@@ -10,27 +10,20 @@ DOTFILES="$HOME/.dotfiles"
 ln -sf "$DOTFILES/.config/zsh/.zsh" "$HOME/.zsh"
 ln -sf "$DOTFILES/.config/zsh/.zshrc" "$HOME/.zshrc"
 
-# FZF Install
-if ! command -v fzf >/dev/null 2>&1; then
+
+# -------------- NVIM (LazyVim) -------------------
+
+# Neovim Install
+if ! command -v nvim >/dev/null 2>&1; then
 	if command -v brew >/dev/null 2>&1; then
-		brew install fzf
+		brew install neovim
 	else
-		git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME/.fzf"
-		"$HOME/.fzf/install" --bin
+		echo "Homebrew not found — install Neovim manually: https://github.com/neovim/neovim/blob/master/INSTALL.md"
 	fi
 fi
 
+# Sym Linking LazyVim config (XDG path — nvim expects it at ~/.config/nvim)
+ln -sf "$DOTFILES/.config/nvim" "$HOME/.config/nvim"
 
-# -------------- .VIM -------------------
-
-# Sym Linking Vim Install
-ln -sf "$DOTFILES/.config/vim/.vimrc" "$HOME/.vimrc"
-
-# vim-plug Install
-if [ ! -f "$HOME/.vim/autoload/plug.vim" ]; then
-	curl -fLo "$HOME/.vim/autoload/plug.vim" --create-dirs \
-	    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-fi
-
-# Install Plugins
-vim +PlugInstall +qall
+# Install/sync plugins headlessly
+nvim --headless "+Lazy! sync" +qa
