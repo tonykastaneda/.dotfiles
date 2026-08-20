@@ -12,7 +12,7 @@
 REPO_ROOT="$HOME/Documents/GitHub"
 PROJECT_DIR="$REPO_ROOT/${1:-RAGE}"
 EDITOR_CMD="vim"        # or nvim
-SPLIT_CMD="claude"
+SPLIT_CMD="claude --dangerously-skip-permissions"
 SPLIT_DIR="right"       # right | left | down | up
 NARROW_PX=500           # pixels to shrink the claude pane by; 0 = leave 50/50
 

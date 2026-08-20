@@ -11,9 +11,13 @@ ln -sf "$DOTFILES/.config/zsh/.zsh" "$HOME/.zsh"
 ln -sf "$DOTFILES/.config/zsh/.zshrc" "$HOME/.zshrc"
 
 # FZF Install
-if [ ! -d "$HOME/.fzf" ]; then
-	git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME/.fzf"
-	"$HOME/.fzf/install" --all
+if ! command -v fzf >/dev/null 2>&1; then
+	if command -v brew >/dev/null 2>&1; then
+		brew install fzf
+	else
+		git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME/.fzf"
+		"$HOME/.fzf/install" --bin
+	fi
 fi
 
 

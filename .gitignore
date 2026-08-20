@@ -1,1 +1,4 @@
 .DS_Store
+
+# fzf file-search cache (contains full local path listings, not for a public repo)
+**/fzf/fs-index

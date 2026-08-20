@@ -11,7 +11,6 @@ alias rc='zed ~/.zshrc'
 
 alias code='cursor . --classic'
 alias curse='cursor . --classic'
-alias ccli='cursor-agent'
 alias fuckit='claude --dangerously-skip-permissions'
 
 alias gitlogs='git log --oneline --graph --decorate'
@@ -38,17 +37,7 @@ source ~/.zsh/Plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 source ~/.zsh/Plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/Plugins/kali-like.zsh
 source ~/.zsh/Plugins/fzf/fzf.zsh
-source ~/.zsh/Plugins/gfla-pricing.zsh
 
 alias tb='terminal-browser'
 alias apps='~/.zsh/Plugins/app-search.zsh'
 alias RAGE='~/.zsh/Plugins/rage-dev.zsh'
-
-# >>> grok installer >>>
-export PATH="$HOME/.grok/bin:$PATH"
-fpath=(~/.grok/completions/zsh $fpath)
-autoload -Uz compinit && compinit -C
-# <<< grok installer <<<
-
-# opencode
-export PATH=/Users/tonycastaneda/.opencode/bin:$PATH
