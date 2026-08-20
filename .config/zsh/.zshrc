@@ -9,17 +9,16 @@ export PATH="$HOME/bin:$PATH"
 # Aliases
 alias rc='zed ~/.zshrc'
 
-alias code='cursor . --classic'
-alias curse='cursor . --classic'
-alias ccli='cursor-agent'
+alias code='zed .'
+alias cunt='cursor . --classic'
+alias agent='cursor-agent'   # grok's installer hijacks the bare `agent` binary name on (re)install
 alias fuckit='claude --dangerously-skip-permissions'
+alias fuckme='codex --dangerously-bypass-approvals-and-sandbox'
 
-alias gitlogs='git log --oneline --graph --decorate'
+alias logs='git log --oneline --graph --decorate'
 alias ranch='git branch -a'
 alias swanch='git switch'
-alias reep='cd ~/Documents/GitHub'
-alias reeps='cd ~/Documents/GitHub'
-alias reepos='cd ~/Documents/GitHub'
+alias lit='cd ~/Documents/GitHub'
 
 alias t='touch'
 alias owd='open .'
@@ -42,7 +41,7 @@ source ~/.zsh/Plugins/gfla-pricing.zsh
 
 alias tb='terminal-browser'
 alias apps='~/.zsh/Plugins/app-search.zsh'
-alias RAGE='~/.zsh/Plugins/rage-dev.zsh'
+alias chat='~/.zsh/Plugins/ai-history.zsh'
 
 # >>> grok installer >>>
 export PATH="$HOME/.grok/bin:$PATH"
