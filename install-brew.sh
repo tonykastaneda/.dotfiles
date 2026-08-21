@@ -39,6 +39,7 @@ brew install herdr
 
 # GUI-APPLICATIONS
 brew install google-chrome
+brew install ghostty
 brew install zed
 brew install raycast
 brew install daisydisk
