@@ -1,0 +1,20 @@
+[ui]
+agent_panel_sort = "spaces"
+
+show_agent_labels_on_pane_borders = true
+[experimental]
+kitty_graphics = true
+
+[ui.toast]
+delivery = "system"
+
+[keys]
+new_tab = "cmd+alt+t"
+switch_tab = "cmd+alt+1..9"
+split_vertical = "cmd+alt+d"
+split_horizontal = "cmd+alt+shift+d"
+new_workspace = "cmd+alt+n"
+cycle_pane_previous = "cmd+alt+["
+cycle_pane_next = "cmd+alt+]"
+close_pane = "cmd+alt+x"
+close_tab = "cmd+alt+shift+x"

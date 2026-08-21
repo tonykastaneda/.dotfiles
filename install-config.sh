@@ -27,3 +27,11 @@ ln -sf "$DOTFILES/.config/nvim" "$HOME/.config/nvim"
 
 # Install/sync plugins headlessly
 nvim --headless "+Lazy! sync" +qa
+
+
+# -------------- HERDR -------------------
+
+# Sym Linking herdr config.toml only — ~/.config/herdr also holds logs,
+# sockets, and session.json that shouldn't be versioned or shared.
+mkdir -p "$HOME/.config/herdr"
+ln -sf "$DOTFILES/.config/herdr/config.toml" "$HOME/.config/herdr/config.toml"

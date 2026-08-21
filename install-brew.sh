@@ -32,6 +32,7 @@ brew install neovim
 brew install nnn
 brew install htop
 brew install fzf
+brew install herdr
 
 
 
