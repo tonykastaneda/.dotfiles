@@ -39,10 +39,11 @@ source ~/.zsh/Plugins/kali-like.zsh
 source ~/.zsh/Plugins/fzf/fzf.zsh
 source ~/.zsh/Plugins/gfla-pricing.zsh
 source ~/.zsh/Plugins/agents.zsh
+source ~/.zsh/Plugins/hd.zsh
+source ~/.zsh/Plugins/app-search.zsh
 
 alias tb='terminal-browser'
 alias vs='tode'
-alias apps='~/.zsh/Plugins/app-search.zsh'
 
 # >>> grok installer >>>
 export PATH="$HOME/.grok/bin:$PATH"
